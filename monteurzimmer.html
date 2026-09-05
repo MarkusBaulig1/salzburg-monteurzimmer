@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Monteurzimmer im Walserwirt – Kategorien &amp; Preise</title>
+<meta name="description" content="Zimmer für Monteure buchen: verschiedene Kategorien, Preise pro Nacht, Mindestaufenthalt 3 Nächte." />
+<style>
+  :root{
+    --dark:#3F5145;
+    --shade:#9A8069;
+    --accent:#ff7a30;
+    --bg:#f7f8fa;
+    --text:#1a1f2b;
+    --muted:#6b7280;
+    --border:#e3e7ee;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  .container{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  header.hero{
+    background:
+      linear-gradient(180deg, rgba(63,81,69,0.90) 0%, rgba(154,128,105,0.38) 55%, rgba(63,81,69,0.92) 100%),
+      url('hero-bg.png') center/cover no-repeat;
+    color:#fff;
+    padding:96px 0 72px;
+    text-align:center;
+    position:relative;
+  }
+  .logo-icon{
+    width:110px;height:110px;border-radius:16px;
+    background:#ffffff;box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 24px;padding:8px;
+  }
+  .logo-icon img{width:100%;height:100%;object-fit:contain;}
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:13px;
+    color:#8fa3d1;
+    margin-bottom:16px;
+  }
+  h1{font-size:44px;line-height:1.1;margin:0 0 20px;font-weight:700;}
+  .sub{
+    font-size:18px;line-height:1.6;color:#c7d1e8;
+    max-width:640px;margin:0 auto 32px;
+  }
+  .btn{
+    display:inline-block;padding:14px 32px;border-radius:8px;
+    font-weight:600;font-size:16px;text-decoration:none;border:none;cursor:pointer;
+    background:var(--accent);color:var(--dark);
+    transition:background-color .2s ease, transform .15s ease, box-shadow .2s ease;
+  }
+  .btn:hover{
+    background:#e8681f;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(255,122,48,.35);
+  }
+  .btn:active{
+    transform:translateY(0);
+    box-shadow:none;
+  }
+  .btn-full{width:100%;margin-top:8px;}
+
+  section.categories{padding:80px 0;}
+  h2{font-size:30px;font-weight:700;margin:0 0 32px;text-align:center;}
+  section.gallery{padding:80px 0;}
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
+  }
+  .gallery-item{margin:0;}
+  .gallery-img{
+    width:100%;height:180px;object-fit:cover;border-radius:10px;
+    display:block;transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .gallery-img:hover{
+    transform:scale(1.04);
+    box-shadow:0 10px 24px rgba(18,33,61,.2);
+  }
+  .gallery-item figcaption{
+    font-size:11px;color:var(--muted);text-align:center;margin-top:6px;
+    line-height:1.4;
+  }
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .cards-double{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto;}
+  .card{
+    background:#fff;border:1px solid var(--border);border-radius:14px;
+    padding:32px;position:relative;
+  }
+  .card.highlight{border-color:var(--accent);box-shadow:0 12px 30px rgba(255,122,48,.15);}
+  .badge{
+    position:absolute;top:-14px;right:24px;background:var(--accent);color:var(--dark);
+    font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;
+  }
+  .card h3{font-size:20px;margin:0 0 12px;}
+  .price{font-size:32px;font-weight:700;margin:0 0 20px;color:var(--dark);}
+  .price span{font-size:14px;font-weight:400;color:var(--muted);}
+  .card ul{list-style:none;padding:0;margin:0;color:#4b5566;font-size:15px;line-height:2;}
+  .tax-note{font-size:13px;color:var(--muted);margin:-14px 0 16px;}
+  .card-extra{
+    list-style:disc;padding-left:18px;margin:16px 0 0;color:var(--muted);
+    font-size:13px;line-height:1.8;border-top:1px solid var(--border);padding-top:16px;
+  }
+  .note{text-align:center;color:var(--muted);margin-top:28px;font-size:14px;}
+
+  section.calculator{
+    background:
+      linear-gradient(135deg, rgba(154,128,105,0.25) 0%, rgba(63,81,69,0) 45%),
+      var(--dark);
+    padding:80px 0;
+  }
+  .calc-grid{display:flex;justify-content:center;}
+  .calc-box{background:#fff;border-radius:16px;padding:40px;max-width:480px;width:100%;}
+  .calc-box h2{text-align:center;font-size:24px;margin-bottom:24px;}
+  .mz-guests-title{font-size:15px;font-weight:700;color:var(--dark);margin:8px 0 4px;padding-top:16px;border-top:1px solid var(--border);}
+  .mz-guests-hint{font-size:12px;color:var(--muted);margin:0 0 16px;}
+  label{display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:16px;}
+  .input{
+    display:block;width:100%;margin-top:6px;padding:12px 14px;border-radius:8px;
+    border:1px solid #d6dbe4;font-size:15px;
+  }
+  .total-box{
+    display:flex;justify-content:space-between;align-items:center;
+    background:#f2f4f8;border-radius:10px;padding:16px 18px;margin-bottom:20px;
+    font-size:15px;color:#374151;
+  }
+  .total-box strong{font-size:24px;color:var(--dark);}
+  .total-box-sub{background:transparent;padding:4px 4px;margin-bottom:8px;font-size:13px;color:var(--muted);}
+  .error{color:#c0392b;font-size:13px;min-height:16px;}
+  .hint{font-size:12px;color:#8a93a3;text-align:center;margin-top:10px;}
+  .success{
+    display:none;background:#eafaf1;border:1px solid #2ecc71;color:#1e7e42;
+    border-radius:8px;padding:14px 16px;font-size:14px;margin-bottom:16px;
+  }
+
+  footer{padding:48px 0 24px;color:var(--muted);font-size:13px;background:#fff;border-top:1px solid var(--border);}
+  .footer-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    text-align:left;margin-bottom:24px;
+  }
+  .footer-grid p{margin:0 0 6px;line-height:1.6;}
+  .footer-grid a{color:var(--muted);text-decoration:underline;}
+  .footer-title{font-weight:700;color:var(--dark);font-size:15px;margin-bottom:8px;}
+  .footer-copyright{text-align:center;font-size:12px;color:#9aa2b1;margin:0;padding-top:16px;border-top:1px solid var(--border);}
+
+  @media screen and (max-width:767px){
+    h1{font-size:32px;}
+    .cards{grid-template-columns:1fr;}
+    header.hero{padding:64px 0 48px;}
+    section.categories, section.calculator, section.gallery{padding:56px 0;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="logo-icon">
+      <img src="logo-walserwirt.png" alt="Walserwirt Logo" />
+    </div>
+    <p class="eyebrow">Unterkunft für Monteure &amp; Projektteams</p>
+    <h1>Monteurzimmer im Walserwirt</h1>
+    <p class="sub">
+      Zwei Zimmerkategorien, faire Preise pro Nacht, Mindestaufenthalt 3 Nächte.
+      Wählen Sie unten Ihre Kategorie und Aufenthaltsdauer – wir berechnen den
+      Gesamtpreis sofort.
+    </p>
+    <a href="#buchung" class="btn">Jetzt FIX buchen</a>
+  </div>
+</header>
+
+<section class="categories" id="kategorien">
+  <div class="container">
+    <h2>Zimmerkategorien</h2>
+    <div class="cards cards-double">
+      <div class="card highlight">
+        <h3>Einzelzimmer</h3>
+        <p class="price">60&nbsp;€ <span>/ Nacht &amp; Zimmer</span></p>
+        <p class="tax-note">Inklusive 10% Umsatzsteuer</p>
+        <ul class="card-extra">
+          <li>Zuzüglich € 1,60 Ortstaxe pro Person/Nacht</li>
+          <li>Exklusive Verpflegung</li>
+          <li>Keine Endreinigungskosten</li>
+          <li>100% Vorauskassa</li>
+        </ul>
+        <ul class="card-extra">
+          <li>Mindestaufenthalt 3 Nächte</li>
+          <li>Gemeinschaftsküche</li>
+          <li>Gemeinschafts-Sanitärbereich</li>
+          <li>Vollausgestattet</li>
+          <li>Eigener Sanitärbereich gegen Aufpreis</li>
+          <li>Parkplatz inklusive</li>
+        </ul>
+      </div>
+      <div class="card highlight">
+        <p class="badge">Für 2 Personen</p>
+        <h3>Zweibettzimmer</h3>
+        <p class="price">35&nbsp;€ <span>/ Person &amp; Nacht</span></p>
+        <p class="tax-note">Inklusive 10% Umsatzsteuer</p>
+        <ul>
+          <li>Zwei Einzelbetten</li>
+        </ul>
+        <ul class="card-extra">
+          <li>Zuzüglich € 1,60 Ortstaxe pro Person/Nacht</li>
+          <li>Exklusive Verpflegung</li>
+          <li>Keine Endreinigungskosten</li>
+          <li>100% Vorauskassa</li>
+        </ul>
+        <ul class="card-extra">
+          <li>Mindestaufenthalt 3 Nächte</li>
+          <li>Gemeinschaftsküche</li>
+          <li>Gemeinschafts-Sanitärbereich</li>
+          <li>Vollausgestattet</li>
+          <li>Eigener Sanitärbereich gegen Aufpreis</li>
+          <li>Parkplatz inklusive</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Mindestaufenthalt: 3 Nächte pro Buchung.</p>
+  </div>
+</section>
+
+<section class="calculator" id="buchung">
+  <div class="container calc-grid">
+    <div class="calc-box">
+      <h2>Preis berechnen &amp; Fix buchen</h2>
+
+      <div id="success" class="success">
+        Danke! Ihre Buchungsanfrage wurde versendet.
+      </div>
+
+      <!--
+        FormSubmit: kein Backend, kein Account nötig.
+        WICHTIG: "DEINE-EMAIL@domain.de" unten durch deine echte Adresse ersetzen.
+        Beim allerersten Testversand schickt FormSubmit dir eine Bestätigungsmail,
+        die du einmalig anklicken musst, danach läuft es automatisch.
+      -->
+      <form id="buchungsformular" action="https://formsubmit.co/DEINE-EMAIL@domain.de" method="POST">
+        <input type="hidden" name="_subject" value="Neue Buchungsanfrage Monteurzimmer" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <!-- Nach dem Versand zurück auf diese Seite leiten: -->
+        <input type="hidden" name="_next" value="" id="redirect-url" />
+
+        <label>Anzahl Nächte (min. 3)
+          <input type="number" id="naechte" name="Naechte" class="input" value="3" min="3" step="1" />
+        </label>
+
+        <label>Anzahl Einzelzimmer (max. 7)
+          <input type="number" id="anzahl-einzelzimmer" name="Anzahl_Einzelzimmer" class="input" value="1" min="0" max="7" step="1" />
+        </label>
+
+        <label>Anzahl Zweibettzimmer (max. 7)
+          <input type="number" id="anzahl-zweibettzimmer" name="Anzahl_Zweibettzimmer" class="input" value="0" min="0" max="7" step="1" />
+        </label>
+
+        <label>Anreisedatum
+          <input type="date" id="datum" name="Anreisedatum" class="input" />
+        </label>
+
+        <div class="total-box total-box-sub">
+          <span>Einzelzimmer (60 € / Nacht &amp; Zimmer)</span>
+          <span id="preis-einzelzimmer">180 €</span>
+        </div>
+        <div class="total-box total-box-sub">
+          <span>Zweibettzimmer (35 € / Person &amp; Nacht)</span>
+          <span id="preis-zweibettzimmer">0 €</span>
+        </div>
+        <div class="total-box total-box-sub">
+          <span>Ortstaxe (€ 1,60 / Person &amp; Nacht)</span>
+          <span id="preis-ortstaxe">4,80 €</span>
+        </div>
+        <div class="total-box">
+          <span>Gesamtpreis</span>
+          <strong id="preis-gesamt">184,80 €</strong>
+        </div>
+        <input type="hidden" id="gesamtpreis-feld" name="Gesamtpreis" value="184,80 €" />
+        <input type="hidden" id="ortstaxe-feld" name="Ortstaxe" value="4,80 €" />
+
+        <label>Name
+          <input type="text" id="name" name="Name" class="input" placeholder="Firmenname" required />
+        </label>
+
+        <label>Adresse
+          <input type="text" id="adresse" name="Adresse" class="input" placeholder="Straße und Hausnummer" />
+        </label>
+
+        <label>PLZ
+          <input type="text" id="plz" name="PLZ" class="input" placeholder="Postleitzahl" />
+        </label>
+
+        <label>Ort
+          <input type="text" id="ort" name="Ort" class="input" placeholder="Ort" />
+        </label>
+
+        <label>Land
+          <select id="land" name="Land" class="input">
+            <option value="">Bitte wählen</option>
+            <option value="Österreich" selected>Österreich</option>
+            <option value="Belgien">Belgien</option>
+            <option value="Bulgarien">Bulgarien</option>
+            <option value="Dänemark">Dänemark</option>
+            <option value="Deutschland">Deutschland</option>
+            <option value="Estland">Estland</option>
+            <option value="Finnland">Finnland</option>
+            <option value="Frankreich">Frankreich</option>
+            <option value="Griechenland">Griechenland</option>
+            <option value="Irland">Irland</option>
+            <option value="Italien">Italien</option>
+            <option value="Kroatien">Kroatien</option>
+            <option value="Lettland">Lettland</option>
+            <option value="Litauen">Litauen</option>
+            <option value="Luxemburg">Luxemburg</option>
+            <option value="Malta">Malta</option>
+            <option value="Niederlande">Niederlande</option>
+            <option value="Polen">Polen</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Rumänien">Rumänien</option>
+            <option value="Schweden">Schweden</option>
+            <option value="Slowakei">Slowakei</option>
+            <option value="Slowenien">Slowenien</option>
+            <option value="Spanien">Spanien</option>
+            <option value="Tschechien">Tschechien</option>
+            <option value="Ungarn">Ungarn</option>
+            <option value="Zypern">Zypern</option>
+          </select>
+        </label>
+
+        <label>E-Mail
+          <input type="email" id="email" name="Email" class="input" placeholder="name@firma.de" required />
+        </label>
+
+        <label>Telefon (optional)
+          <input type="tel" id="telefon" name="Telefon" class="input" value="+43 " placeholder="+43 660 1234567" />
+        </label>
+
+        <label>UID-Nummer (optional)
+          <input type="text" id="uid" name="UID-Nummer" class="input" placeholder="ATU12345678" />
+        </label>
+
+        <h3 class="mz-guests-title">Name der Gäste mit Geburtsdatum</h3>
+        <p class="mz-guests-hint">Passt sich automatisch an die Anzahl gebuchter Einzel- und Zweibettzimmer an.</p>
+
+        <div id="gaeste-container"></div>
+
+        <p id="fehler" class="error"></p>
+
+        <button type="submit" class="btn btn-full">Jetzt verbindlich buchen</button>
+        <p class="hint">Im Anschluss wird Ihnen eine Zahlungsaufforderung zugesandt – sobald eine Sofortüberweisung getätigt wurde, wird Ihr Zimmer reserviert.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galerie">
+  <div class="container">
+    <h2>Impressionen</h2>
+    <div class="gallery-grid">
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-1.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-2.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-3.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-4.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-5.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-6.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-7.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-8.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-9.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-img" src="galerie-zimmer-10.jpg" alt="Salzburg-Monteurzimmer-Walserwirt" loading="lazy" />
+        <figcaption>Salzburg-Monteurzimmer-Walserwirt</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-title">Walserwirt GmbH</p>
+      <p>Walserstraße 24<br />5071 Wals bei Salzburg</p>
+    </div>
+    <div>
+      <p>Tel: <a href="tel:+43662850927">0662 850927</a></p>
+      <p>E-Mail: <a href="mailto:info@walserwirt.com">info@walserwirt.com</a></p>
+      <p>Web: <a href="https://www.walserwirt.com" target="_blank" rel="noopener">www.walserwirt.com</a></p>
+    </div>
+    <div>
+      <p>Geschäftsführer: Paul Santner</p>
+      <p>Firmenbuchnummer: FN 610827 a</p>
+      <p>UID-Nummer: ATU79903213</p>
+    </div>
+  </div>
+  <p class="footer-copyright">© Walserwirt GmbH</p>
+</footer>
+
+<script>
+  document.getElementById('redirect-url').value = window.location.href.split('#')[0] + '?danke=1';
+
+  var PREIS_EINZELZIMMER = 60;   // € pro Nacht & Zimmer
+  var PREIS_ZWEIBETTZIMMER = 35; // € pro Person & Nacht
+  var ORTSTAXE_PRO_PERSON_NACHT = 1.60;
+
+  function formatEuro(betrag) {
+    return betrag.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  var letzteGaesteAnzahl = -1;
+
+  function renderGaeste(anzahl) {
+    if (anzahl === letzteGaesteAnzahl) return; // Werte nicht unnötig überschreiben
+    letzteGaesteAnzahl = anzahl;
+
+    var container = document.getElementById('gaeste-container');
+    container.innerHTML = '';
+
+    for (var i = 1; i <= anzahl; i++) {
+      var nameLabel = document.createElement('label');
+      nameLabel.textContent = 'Name Gast ' + i;
+      var nameInput = document.createElement('input');
+      nameInput.type = 'text';
+      nameInput.id = 'gast-' + i + '-name';
+      nameInput.name = 'Gast' + i + '_Name';
+      nameInput.className = 'input';
+      nameInput.placeholder = 'Vor- und Nachname';
+      nameInput.required = true;
+      nameLabel.appendChild(nameInput);
+
+      var geburtLabel = document.createElement('label');
+      geburtLabel.textContent = 'Geburtsdatum Gast ' + i;
+      var geburtInput = document.createElement('input');
+      geburtInput.type = 'date';
+      geburtInput.id = 'gast-' + i + '-geburtsdatum';
+      geburtInput.name = 'Gast' + i + '_Geburtsdatum';
+      geburtInput.className = 'input';
+      geburtInput.required = true;
+      geburtLabel.appendChild(geburtInput);
+
+      container.appendChild(nameLabel);
+      container.appendChild(geburtLabel);
+    }
+  }
+
+  function begrenze(input) {
+    var wert = Math.min(7, Math.max(0, parseInt(input.value) || 0));
+    input.value = wert;
+    return wert;
+  }
+
+  function aktualisierePreis() {
+    var naechteInput = document.getElementById('naechte');
+    var naechte = Math.max(3, parseInt(naechteInput.value) || 3);
+    naechteInput.value = naechte;
+
+    var anzahlEinzel = begrenze(document.getElementById('anzahl-einzelzimmer'));
+    var anzahlZweibett = begrenze(document.getElementById('anzahl-zweibettzimmer'));
+
+    var preisEinzelzimmer = naechte * PREIS_EINZELZIMMER * anzahlEinzel;
+    var preisZweibettzimmer = naechte * PREIS_ZWEIBETTZIMMER * 2 * anzahlZweibett;
+
+    var personenGesamt = (anzahlEinzel * 1) + (anzahlZweibett * 2);
+    var ortstaxe = naechte * personenGesamt * ORTSTAXE_PRO_PERSON_NACHT;
+
+    var zimmerpreis = preisEinzelzimmer + preisZweibettzimmer;
+    var gesamt = zimmerpreis + ortstaxe;
+
+    document.getElementById('preis-einzelzimmer').textContent = formatEuro(preisEinzelzimmer);
+    document.getElementById('preis-zweibettzimmer').textContent = formatEuro(preisZweibettzimmer);
+    document.getElementById('preis-ortstaxe').textContent = formatEuro(ortstaxe);
+    document.getElementById('preis-gesamt').textContent = formatEuro(gesamt);
+    document.getElementById('gesamtpreis-feld').value = formatEuro(gesamt);
+    document.getElementById('ortstaxe-feld').value = formatEuro(ortstaxe);
+
+    renderGaeste(personenGesamt);
+  }
+
+  document.getElementById('naechte').addEventListener('input', aktualisierePreis);
+  document.getElementById('anzahl-einzelzimmer').addEventListener('input', aktualisierePreis);
+  document.getElementById('anzahl-zweibettzimmer').addEventListener('input', aktualisierePreis);
+  aktualisierePreis();
+
+  document.getElementById('buchungsformular').addEventListener('submit', function (e) {
+    var fehler = document.getElementById('fehler');
+    fehler.textContent = '';
+    var naechte = parseInt(document.getElementById('naechte').value) || 0;
+    var anzahlEinzel = parseInt(document.getElementById('anzahl-einzelzimmer').value) || 0;
+    var anzahlZweibett = parseInt(document.getElementById('anzahl-zweibettzimmer').value) || 0;
+
+    if (naechte < 3) {
+      e.preventDefault();
+      fehler.textContent = 'Der Mindestaufenthalt beträgt 3 Nächte.';
+      return;
+    }
+    if (anzahlEinzel === 0 && anzahlZweibett === 0) {
+      e.preventDefault();
+      fehler.textContent = 'Bitte mindestens ein Zimmer auswählen.';
+    }
+  });
+
+  // Optional: Dankesmeldung anzeigen, wenn per Redirect zurückgekommen (?danke=1)
+  if (window.location.search.indexOf('danke=1') !== -1) {
+    document.getElementById('success').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
